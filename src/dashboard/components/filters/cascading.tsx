@@ -1,18 +1,85 @@
-import React from "react"
+import React, { useState } from 'react';
 
-export default function Cascading({ title, items, toggleItem, type }: { title: string, items: string[], type: string, toggleItem: (type: string, value: string) => void }) {
-    return <>
-        <label className="form-control w-full max-w-sm">
-            <div className="label">
-                <span className="label-text font-bold">{title}</span>
-            </div>
-            <select onChange={e => toggleItem(type, e.target.value)} className="select select-primary select-bordered">
-                <option disabled selected>Pick one</option>
-                {
-                    items.map((item, index) => <option key={index}>{item}</option>)
-                }
-            </select>
-        </label>
-    </>
+const isEmpty = (obj: Record<string, string>) => {
+    return Object.keys(obj).length === 0;
+};
 
+export interface DropdownOption {
+    label: string;
+    value: string;
 }
+
+export interface CascadingDropdownProps {
+    data: Record<string, DropdownOption[]>; // Key-value pairs where key is parent value and value is child options
+    currentSelectedValues: Record<string, string>;
+    hierarchy: string[]; // Order of dropdowns
+    onSelectionChange: (selectedValues: Record<string, string>) => void;
+}
+
+/**
+ * A React functional component that renders a cascading dropdown menu.
+ * 
+ * @param {CascadingDropdownProps} props - The properties for the CascadingDropdown component.
+ * @param {Record<string, DropdownOption[]>} props.data - An object containing the dropdown options for each level.
+ * @param {string[]} props.hierarchy - An array representing the hierarchy of dropdown levels.
+ * @param {(selectedValues: Record<string, string>) => void} props.onSelectionChange - A callback function that is called when the selection changes.
+ * @param {Record<string, string>} [props.currentSelectedValues] - An optional object containing the current selected values for each level.
+ * 
+ * @returns {JSX.Element} The rendered cascading dropdown component.
+ * 
+ * @example
+ * ```tsx
+ * const data = {
+ *   country: [{ label: 'USA', value: 'usa' }, { label: 'Canada', value: 'canada' }],
+ *   state: [{ label: 'California', value: 'california' }, { label: 'Texas', value: 'texas' }],
+ *   city: [{ label: 'Los Angeles', value: 'losangeles' }, { label: 'San Francisco', value: 'sanfrancisco' }]
+ * };
+ * const hierarchy = ['country', 'state', 'city'];
+ * const handleSelectionChange = (selectedValues) => {
+ *   console.log(selectedValues);
+ * };
+ * 
+ * <CascadingDropdown data={data} hierarchy={hierarchy} onSelectionChange={handleSelectionChange} />
+ * ```
+ */
+const CascadingDropdown: React.FC<CascadingDropdownProps> = ({ data, hierarchy, onSelectionChange, currentSelectedValues }) => {
+    const [selectedValues, setSelectedValues] = useState<Record<string, string>>(isEmpty(currentSelectedValues) ? {} : currentSelectedValues);
+
+    const handleChange = (level: string, value: string) => {
+        const newSelectedValues = { ...selectedValues, [level]: value };
+
+        // Clear child selections if a parent changes
+        const levelIndex = hierarchy.indexOf(level);
+        const levelsToClear = hierarchy.slice(levelIndex + 1);
+        levelsToClear.forEach((key) => delete newSelectedValues[key]);
+
+        setSelectedValues(newSelectedValues);
+        onSelectionChange(newSelectedValues);
+    };
+
+    const renderDropdowns = () => {
+        return hierarchy.map((level, index) => {
+            const options: Array<DropdownOption> = data[level]?.length > 0 ? data[level] : [];
+            return (
+                <div key={level}>
+                    <div className="label">
+                        <span className="label-text">Select {level}</span>
+                    </div>
+                    <select id={`dropdown-${level}`} value={selectedValues[level] || ''} onChange={(e) => handleChange(level, e.target.value)} className='select select-bordered select-primary'>
+                        <option value=''>-- Select --</option>
+                        {options.length &&
+                            options.map((option: DropdownOption, optIndex: number) => (
+                                <option key={`${index + optIndex + ''}-${level}-${option.label}`} value={option.value}>
+                                    {option.label}
+                                </option>
+                            ))}
+                    </select>
+                </div>
+            );
+        });
+    };
+
+    return <div className='flex gap-4'>{renderDropdowns()}</div>;
+};
+
+export default CascadingDropdown;

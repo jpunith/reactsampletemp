@@ -4,7 +4,7 @@ import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
 export default function Chart({ data }: { data: { Month: string, SalesAmount: number }[] }) {
 
   return (
-    <ResponsiveContainer width="50%" height="100%">
+    <ResponsiveContainer width="100%" height="100%">
       <BarChart
         data={data}
         margin={{

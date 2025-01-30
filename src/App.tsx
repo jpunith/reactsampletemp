@@ -5,14 +5,22 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import './index.scss'
 import Dashboard from './dashboard/dashboard';
+import Navbar from './navbar/navbar';
+import Footer from './footer/footer';
 
 function App() {
   return (
     <BrowserRouter>
-      <Routes>
-        <Route path="/login" element={<Login />}/>
-        <Route path="/dashboard" element={<Dashboard />}/>
-      </Routes>
+      <div className='flex flex-col justify-between'>
+        <Navbar />
+        <div className='bg-gray-50 min-h-[calc(100vh-117px)]'>
+          <Routes>
+            <Route path="/login" element={<Login />} />
+            <Route path="/dashboard" element={<Dashboard />} />
+          </Routes>
+        </div>
+        <Footer />
+      </div>
     </BrowserRouter>
   );
 }

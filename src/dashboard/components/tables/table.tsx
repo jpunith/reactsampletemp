@@ -2,7 +2,6 @@ import React from "react"
 import { ItemType } from "../../dashboard"
 export default function Table({ data, selectFinalRow }: { data: ItemType[], selectFinalRow: (row: ItemType) => void }) {
   return (
-    <div className="w-1/2">
       <table className="table">
         <thead>
           <tr>
@@ -21,6 +20,5 @@ export default function Table({ data, selectFinalRow }: { data: ItemType[], sele
           }
         </tbody>
       </table>
-    </div>
   )
 }
