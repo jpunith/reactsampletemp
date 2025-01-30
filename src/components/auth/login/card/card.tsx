@@ -1,13 +1,18 @@
 import React from "react"
 import { useNavigate } from "react-router-dom"
 import useAuth from "../hooks/userAuth"
-export default function Card() {
+import { useDispatch, useSelector } from "react-redux"
+import { resetCredentials, setCredentials } from "../../../auth/auth"
 
+export default function Card() {
     const { username, password, handlePasswordChange, handleUsernameChange, reset } = useAuth()
     const navigate = useNavigate()
+    const user = useSelector(state => state.user.value)
+    const dispatch = useDispatch()
 
     function handleSubmit() {
         // make api call
+        dispatch(setCredentials({ username }))
         navigate('/dashboard')
         reset()
     }

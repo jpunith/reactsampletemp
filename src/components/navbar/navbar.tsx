@@ -1,6 +1,8 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
+    const { username } = useSelector(state => state.user.value)
     return <div className="navbar bg-base-100 shadow-lg">
         <div className="flex-none">
             <button className="btn btn-square btn-ghost">
@@ -18,22 +20,17 @@ export default function Navbar() {
             </button>
         </div>
         <div className="flex-1">
-            <a className="btn btn-ghost text-xl">daisyUI</a>
+            <a className="btn btn-ghost text-xl">Furniture</a>
         </div>
         <div className="flex-none">
-            <button className="btn btn-square btn-ghost">
-                <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    className="inline-block h-5 w-5 stroke-current">
-                    <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M5 12h.01M12 12h.01M19 12h.01M6 12a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0zm7 0a1 1 0 11-2 0 1 1 0 012 0z"></path>
-                </svg>
-            </button>
+            {username && <div className="dropdown">
+                <div tabIndex={0} role="button" className="btn btn-circle btn-outline m-1 uppercase">{username[0]}</div>
+                <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52 p-2 shadow right-0">
+                    <li className="capitalize text-center font-bold p-2">{username}</li>
+                </ul>
+            </div>
+            }
+
         </div>
     </div>
 }
