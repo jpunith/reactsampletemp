@@ -1,8 +1,9 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useAppSelector } from "../../states/hooks";
 
 export default function Navbar() {
-    const { username } = useSelector(state => state.user.value)
+    const { username } = useAppSelector(state => state.user.value)
+    
     return <div className="navbar bg-base-100 shadow-lg">
         <div className="flex-none">
             <button className="btn btn-square btn-ghost">

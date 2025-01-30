@@ -4,6 +4,7 @@ import Login from './components/auth/login/login'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import './index.scss'
+
 import Dashboard from './components/dashboard/dashboard';
 import Navbar from './components/navbar/navbar';
 import Footer from './components/footer/footer';
@@ -18,7 +19,7 @@ function App() {
         <Navbar />
         <div className='h-full p-4'>
           <Routes>
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </div>
