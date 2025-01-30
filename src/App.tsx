@@ -1,12 +1,16 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import Login from "./login/login";
+import React from 'react'
+import ReactDOM from 'react-dom/client'
+import Login from './components/auth/login/login'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import "./index.scss";
-import Dashboard from "./dashboard/dashboard";
-import Navbar from "./navbar/navbar";
-import Footer from "./footer/footer";
+import './index.scss'
+
+import Dashboard from './components/dashboard/dashboard';
+import Navbar from './components/navbar/navbar';
+import Footer from './components/footer/footer';
+
+import store from './states/store'
+import { Provider } from 'react-redux'
 
 function App() {
   return (
@@ -15,7 +19,7 @@ function App() {
         <Navbar />
         <div className="h-full p-4">
           <Routes>
-            <Route path="/login" element={<Login />} />
+            <Route path="/" element={<Login />} />
             <Route path="/dashboard" element={<Dashboard />} />
           </Routes>
         </div>
@@ -30,6 +34,9 @@ if (!rootElement) throw new Error("Failed to find the root element");
 
 const root = ReactDOM.createRoot(rootElement as HTMLElement);
 
-root.render(<App />);
+root.render(
+  <Provider store={store}>
+    <App />
+  </Provider>)
 
 export default App;
