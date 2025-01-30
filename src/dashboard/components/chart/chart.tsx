@@ -1,10 +1,23 @@
-import React from 'react';
-import { BarChart, Bar, Rectangle, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import React from "react";
+import {
+  BarChart,
+  Bar,
+  Rectangle,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  ResponsiveContainer,
+} from "recharts";
 
-export default function Chart({ data }: { data: { Month: string, SalesAmount: number }[] }) {
-
+export default function Chart({
+  data,
+}: {
+  data: { Month: string; SalesAmount: number }[];
+}) {
   return (
-    <ResponsiveContainer width="100%" height={500} className='h-[500px]'>
+    <ResponsiveContainer width="100%" height={500} className="h-[500px]">
       <BarChart
         data={data}
         margin={{
@@ -19,7 +32,11 @@ export default function Chart({ data }: { data: { Month: string, SalesAmount: nu
         <YAxis />
         <Tooltip />
         <Legend />
-        <Bar dataKey="SalesAmount" fill="#8884d8" activeBar={<Rectangle fill="pink" stroke="blue" />} />
+        <Bar
+          dataKey="SalesAmount"
+          fill="#8884d8"
+          activeBar={<Rectangle fill="pink" stroke="blue" />}
+        />
       </BarChart>
     </ResponsiveContainer>
   );

@@ -1,8 +1,8 @@
-import { useState } from 'react';
+import { useState } from "react";
 
 const useAuth = () => {
-  const [username, setUsername] = useState<string>('');
-  const [password, setPassword] = useState<string>('');
+  const [username, setUsername] = useState<string>("");
+  const [password, setPassword] = useState<string>("");
 
   const handleUsernameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUsername(e.target.value);
@@ -13,8 +13,8 @@ const useAuth = () => {
   };
 
   const reset = () => {
-    setUsername('');
-    setPassword('');
+    setUsername("");
+    setPassword("");
   };
 
   return {
