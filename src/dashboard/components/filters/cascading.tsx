@@ -63,9 +63,9 @@ const CascadingDropdown: React.FC<CascadingDropdownProps> = ({ data, hierarchy, 
             return (
                 <div key={level}>
                     <div className="label">
-                        <span className="label-text">Select {level}</span>
+                        <span className="label-text font-bold">Select {level}</span>
                     </div>
-                    <select id={`dropdown-${level}`} value={selectedValues[level] || ''} onChange={(e) => handleChange(level, e.target.value)} className='select select-bordered select-primary'>
+                    <select id={`dropdown-${level}`} value={selectedValues[level] || ''} onChange={(e) => handleChange(level, e.target.value)} className='select select-bordered w-60 select-primary'>
                         <option value=''>-- Select --</option>
                         {options.length &&
                             options.map((option: DropdownOption, optIndex: number) => (
@@ -79,7 +79,7 @@ const CascadingDropdown: React.FC<CascadingDropdownProps> = ({ data, hierarchy, 
         });
     };
 
-    return <div className='flex gap-4'>{renderDropdowns()}</div>;
+    return <div className='flex gap-x-16 gap-y-4 flex-wrap justify-center'>{renderDropdowns()}</div>;
 };
 
 export default CascadingDropdown;
