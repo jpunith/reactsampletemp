@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from "react"
-import CascadingDropdown from "./filters/cascading"
-import Table from "./tables/table"
+import React, { useEffect, useState } from "react";
+import CascadingDropdown from "./filters/cascading";
+import Table from "./tables/table";
 import Chart from "./chart/chart";
 import axios from "axios";
-import dummyData from '../../data'
+import dummyData from "../../data";
 import { useSelector } from "react-redux";
 export interface FilterType {
   type: string;
@@ -20,10 +20,10 @@ export interface ItemType {
 const ENDPOINT = "http://172.19.42.144:3001/api/cascading-dropdown?";
 
 export default function Dashboard() {
-    const [finalData, setFinalData] = useState(dummyData)
-    const user = useSelector(state => state.user.value)
+  const [finalData, setFinalData] = useState(dummyData);
+  const user = useSelector((state) => state.user.value);
 
-    console.log(user)
+  console.log(user);
 
   const [finalSelection, setFinalSelection] = useState<FilterType[]>([]);
   const [selectedFilter, setSelectedFilter] = useState<Record<string, string>>(

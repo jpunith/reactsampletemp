@@ -1,6 +1,12 @@
-import React from "react"
-import { ItemType } from "../dashboard"
-export default function Table({ data, selectFinalRow }: { data: ItemType[], selectFinalRow: (row: ItemType) => void }) {
+import React from "react";
+import { ItemType } from "../dashboard";
+export default function Table({
+  data,
+  selectFinalRow,
+}: {
+  data: ItemType[];
+  selectFinalRow: (row: ItemType) => void;
+}) {
   return (
     <table className="table max-w-4xl">
       <thead>

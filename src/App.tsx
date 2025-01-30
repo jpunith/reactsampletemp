@@ -1,16 +1,16 @@
-import React from 'react'
-import ReactDOM from 'react-dom/client'
-import Login from './components/auth/login/login'
+import React from "react";
+import ReactDOM from "react-dom/client";
+import Login from "./components/auth/login/login";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import './index.scss'
+import "./index.scss";
 
-import Dashboard from './components/dashboard/dashboard';
-import Navbar from './components/navbar/navbar';
-import Footer from './components/footer/footer';
+import Dashboard from "./components/dashboard/dashboard";
+import Navbar from "./components/navbar/navbar";
+import Footer from "./components/footer/footer";
 
-import store from './states/store'
-import { Provider } from 'react-redux'
+import store from "./states/store";
+import { Provider } from "react-redux";
 
 function App() {
   return (
@@ -37,6 +37,7 @@ const root = ReactDOM.createRoot(rootElement as HTMLElement);
 root.render(
   <Provider store={store}>
     <App />
-  </Provider>)
+  </Provider>,
+);
 
 export default App;
