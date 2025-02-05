@@ -29,7 +29,7 @@ function App() {
       <Security oktaAuth={oktaAuth} restoreOriginalUri={() => { }}>
         <Router>
           <Navbar />
-          <div className="flex-1 w-full ">
+          <div className="flex-1 w-full bg-gray-100 ">
             <Switch>
               <SecureRoute exact path='/' component={Dashboard} />
               {/* <SecureRoute exact path='/profile' component={Profile} /> */}
