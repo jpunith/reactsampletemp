@@ -15,7 +15,7 @@ import { Provider } from "react-redux";
 function App() {
   return (
     <BrowserRouter>
-      <div className="flex flex-col h-full min-h-screen">
+      <div className="flex flex-col h-full min-h-screen" data-testid="app">
         <Navbar />
         <div className="h-full p-4">
           <Routes>

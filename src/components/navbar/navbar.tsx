@@ -5,7 +5,7 @@ export default function Navbar() {
   const { username } = useAppSelector((state) => state.user.value);
 
   return (
-    <div className="navbar bg-base-100 shadow-lg">
+    <div className="navbar bg-base-100 shadow-lg" data-testid="navbar">
       <div className="flex-none">
         <button className="btn btn-square btn-ghost">
           <svg

@@ -3,7 +3,7 @@ import Card from "./card/card";
 
 export default function Login() {
   return (
-    <div className="h-full flex justify-center items-center">
+    <div className="h-full flex justify-center items-center" data-testid="login">
       <Card />
     </div>
   );
