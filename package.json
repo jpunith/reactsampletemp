@@ -4,7 +4,7 @@
   "scripts": {
     "build": "webpack --mode production",
     "build:dev": "webpack --mode development",
-    "build:start": "cd dist && PORT=8080 npx serve",
+    "build:start": "cd dist && PORT=3000 npx serve",
     "start": "webpack serve --mode development",
     "start:live": "webpack serve --mode development --live-reload --hot",
     "test": "jest",
@@ -28,6 +28,7 @@
     "@types/jest": "^29.5.14",
     "@types/react": "^18.2.0",
     "@types/react-dom": "^18.2.0",
+    "@types/react-router-dom": "^5.3.3",
     "@types/testing-library__jest-dom": "^5.14.9",
     "@types/testing-library__react": "^10.0.1",
     "@typescript-eslint/eslint-plugin": "^8.21.0",
@@ -59,14 +60,19 @@
     "webpack-dev-server": "^4.3.1"
   },
   "dependencies": {
+    "@okta/okta-auth-js": "^7.10.1",
+    "@okta/okta-react": "^6.9.0",
     "@reduxjs/toolkit": "^2.5.1",
     "@types/react-redux": "^7.1.34",
     "axios": "^1.7.9",
+    "openai": "^4.82.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-markdown": "^9.0.3",
     "react-redux": "^9.2.0",
-    "react-router-dom": "^7.1.3",
+    "react-router-dom": "^5.3.4",
     "rechart": "^0.0.1",
-    "recharts": "^2.15.1"
+    "recharts": "^2.15.1",
+    "socket.io-client": "^4.8.1"
   }
 }
